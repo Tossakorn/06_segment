@@ -33,7 +33,8 @@ begin
     2026.05.06 ep4  v01
     2026.05.11 ep4  v02 เพิ่มส่วนของการดึง nbcustomer_id มาแสดงใน segment data เลย
 	                               เพิ่มส่วนของการลบ ไม่ให้เกิน  3 version ป้องกันข้อมูลบวม
-    2026.05.13 ep4  v03 เปลี่ยน segment 13 เป็น 19 เพื่อให้เหลือ segment สำหรับการเพิ่มในอนาคตได้อีก และเปลี่ยน segment ของ authorized, family, tenant เป็น 9,10,11 ตามลำดับ
+    2026.05.13 ep4  v03 - เปลี่ยน segment 13 เป็น 19 (11->13(prostpect, 12->18(lead), 13->19(guest), 9->10(family) ,9->11(main tenane), 10->9 Authorize))
+                        - เพิ่มเงื่อนไข app_id = 1 ในการหาข้อมูล Asset (เฉพาะของ noble_id)
 
 */
 
@@ -142,6 +143,7 @@ IF (OBJECT_ID (N'tempdb..#temp_owner_nbid') IS NOT NULL) DROP TABLE #temp_owner_
         and pp_cust.OLM_ID  = asset.olm_id
         --join ต้อง where rec_rank = 1 ด้วย
         and asset.status = 'Active'
+        and asset.app_id = 1          --2026.05.13 app_id = 1(noble_id)
     ;
 
 --  select *   from #temp_owner_nbid;    -- ok 
@@ -603,6 +605,7 @@ IF (OBJECT_ID (N'tempdb..#temp_nbid_segment_09') IS NOT NULL) DROP TABLE #temp_n
         and pp_cust.OLM_ID  = asset.olm_id
         and asset.status = 'Active'
         and upper(asset.permission) in ('T','A','F')  -- tenant, authorized person, family
+        and asset.app_id = 1                          --2026.05.13 app_id = 1(noble_id)
       --0  and asset.status = 'Active'
 ;
 

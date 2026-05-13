@@ -33,6 +33,7 @@ begin
     2026.05.06 ep4  v01
     2026.05.11 ep4  v02 เพิ่มส่วนของการดึง nbcustomer_id มาแสดงใน segment data เลย
 	                               เพิ่มส่วนของการลบ ไม่ให้เกิน  3 version ป้องกันข้อมูลบวม
+    2026.05.13 ep4  v03 เปลี่ยน segment 13 เป็น 19 เพื่อให้เหลือ segment สำหรับการเพิ่มในอนาคตได้อีก และเปลี่ยน segment ของ authorized, family, tenant เป็น 9,10,11 ตามลำดับ
 
 */
 
@@ -578,7 +579,9 @@ IF (OBJECT_ID (N'tempdb..#temp_nbid_segment_09') IS NOT NULL) DROP TABLE #temp_n
         -- as rec_rank
         ,inv.pd_code as inv_pd_code
         ,case when upper(asset.Permission) = 'A' then 9
-               when upper(asset.Permission) in ( 'T','F') then 10
+               when upper(asset.Permission) in ( 'T') then 11          --2026.05.13 เปลี่ยนจาก (t,f) =10  tenant-main = 11
+               when upper(asset.Permission) in ( 'F') then 10          --2026.05.13 เปลี่ยนจาก (t,f) =10  family      = 10 
+               else 99999  
         end as olm_segment
  -------------------------------------------
          into  #temp_nbid_segment_09
@@ -622,7 +625,7 @@ from
     select distinct
             visit.pj_code
             ,visit.customer_id
-            ,11 as olm_segment   -- postspect 
+            ,17 as olm_segment   -- postspect 2026.05.13 เปลี่ยนจาก 11->17
     from nbfo2.pos.PP_Visit visit with(nolock)
         left join nbfo2.pos.PP_Customer pp_cust with(nolock)
             on visit.customer_id = pp_cust.customer_id
@@ -631,7 +634,7 @@ from
     select distinct
             opp.pj_code
             ,opp.customer_id
-            ,12 as olm_segment   -- lead    
+            ,18 as olm_segment   -- lead   2026.05.13 เปลี่ยนจาก 11->17 
     from nbfo2.pos.PP_Opportunity opp with(nolock)
         left join nbfo2.pos.PP_Customer pp_cust with(nolock)
             on opp.customer_id = pp_cust.customer_id       
@@ -836,8 +839,8 @@ select
     ,lead.customer_id as customer_id
     ,null as ct
     ,lead.olm_segment as segment_olm
-    ,case when lead.olm_segment = 11 then 2
-          when lead.olm_segment = 12 then 3 
+    ,case when lead.olm_segment = 17 then 2              -- 2026.05.13 เปลี่ยนจาก 11->17
+          when lead.olm_segment = 18 then 3              -- 2026.05.13 เปลี่ยนจาก 12->18
           else  999
     end pos_segment_id                                   --2026.05.07  เพิ่มขึ้นมา อ้างอิงจาก olm_segment
     ,'#temp_prospect_lead_10' as source
@@ -962,7 +965,7 @@ select
      ,pp_cust.customer_id 
      ,null as pd_runno
      ,null as CT
-     ,13 as segment 
+     ,19 as segment                               -- 2026.05.13 เปลี่ยนจาก 13->19
      ,4 as pos_segment_id
      ,'pj_code = 1000' as source
      , 1 as my_rank

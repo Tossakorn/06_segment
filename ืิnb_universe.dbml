@@ -1,0 +1,1126 @@
+// update: 2026.05.15
+////////////////////////////////////////////////////
+// Database : Customer_Managment_DB 
+////////////////////////////////////////////////////
+
+Table CMM_public."Customer" {
+  "CID" serial4 [not null]
+  "NB_Customer_ID" varchar(20)
+  "CustomerType_ID" int4
+  "Occupation_ID" int4
+  "Sub_Occ_ID" int4
+  "Occupation_Remark" varchar(255)
+  "CS_CardID" varchar(255)
+  "CS_PASSPORT_NO" varchar(255)
+  "Passport_Country_ID" varchar(10)
+  "Flag_Juristic" bool
+  "Branch_Code" varchar(50)
+  "Branch_Name" varchar(255)
+  "CS_Authorized_Person_TH" varchar(255)
+  "CS_Authorized_Person_EN" varchar(255)
+  "MarriageStatus" varchar(2)
+  "CS_Prefix" varchar(50)
+  "CS_FName" varchar(255)
+  "CS_LName" varchar(255)
+  "CS_Prefix_EN" varchar(50)
+  "CS_FName_EN" varchar(255)
+  "CS_LName_EN" varchar(255)
+  "CS_BirthDate" date
+  "CS_Sex" varchar(10)
+  "CS_Nationality" varchar(50)
+  "CS_Race" varchar(4)
+  "Customer_Note" text
+  "Language" varchar(50)
+  "Income" numeric(15)
+  "Create_Date" timestamp(6)
+  "Create_By" varchar(255)
+  "Update_Date" timestamp(6)
+  "Update_By" varchar(255)
+  "WH_Update_Date" int4
+  "Migration_Time" int4
+  "Spam_Type" varchar(255)
+  "Segment" varchar(255)
+  "Sub_Segment" varchar(255)
+  "bank_customer_id" varchar(255)
+  "Segment_OLM" varchar(255)
+  "card_brand" varchar(50)
+  "card_number" varchar(50)
+  "card_expired" varchar(50)
+  "card_id" varchar(100)
+  "card_name" varchar(255)
+  "lux_bank_customer_id" varchar(255)
+
+  Indexes {
+    CID [unique, name: "Customer_CID_key"]
+    CID [pk, name: "Customer_pkey"]
+  }
+}
+
+Table CMM_public."Customer_System" {
+  "CSID" serial4 [not null]
+  "NB_Customer_ID" varchar(20)
+  "System_ID" int4
+  "Sys_Customer_ID" int4
+  "Status" bool
+  "Create_Date" timestamp(6)
+  "Create_By" varchar(255)
+  "Update_Date" timestamp(6)
+  "Update_By" varchar(255)
+  "WH_Update_Date" int4
+
+  Indexes {
+    CSID [unique, name: "Customer_System_CSID_key"]
+    CSID [pk, name: "Customer_System_pkey"]
+  }
+}
+
+
+Table CMM_public."SY_System" {
+  "System_ID" serial4 [not null]
+  "System" varchar(50)
+  "Status" bool
+  "Create_Date" timestamp(6)
+  "Create_By" varchar(255)
+  "Update_Date" timestamp(6)
+  "Update_By" varchar(255)
+  "WH_Update_Date" int4
+
+  Indexes {
+    System_ID [unique, name: "SY_System_System_ID_key"]
+    System_ID [pk, name: "SY_System_pkey"]
+  }
+}
+
+ref : CMM_public."Customer"."NB_Customer_ID" >CMM_public."Customer_System"."NB_Customer_ID"
+ref : CMM_public."SY_System"."System_ID" > CMM_public."Customer_System"."System_ID"
+///////////////////////////////////////////////////////////////
+//  Database : NBFO2 {POS}
+//////////////////////////////////////////////////////////////'
+
+Table NBFO2_POS.PP_Customer {
+  Customer_ID int
+  OLM_ID int
+  // CreateY varchar
+  // CreateQ varchar
+  // CreateM varchar
+  // CreateD varchar
+  Source int
+  // test bit
+  CName nvarchar
+  CustomerDB nvarchar
+  SaleStatus nvarchar
+  CS_CardId nvarchar
+  CS_PASSPORT_NO nvarchar
+  PdfCard varchar
+  WorkPermit bit
+  CS_Prefix nvarchar
+  CS_FName nvarchar
+  CS_LName nvarchar
+  CS_Prefix_EN nvarchar
+  CS_FName_EN nvarchar
+  CS_LName_EN nvarchar
+  Sex nvarchar
+  Age nvarchar
+  CS_BirthDate datetime
+  CS_Nation varchar
+  CS_Nationality nvarchar
+  CS_Race varchar
+  Occupation_ID int
+  MarriageStatus varchar
+  email nvarchar
+  // CContactPhone_int_dial_code varchar
+  // CContactPhone nvarchar
+  // CContactPhone_DateUpdate datetime
+  // CContactPhone_StaffUpdate nvarchar
+  // CContactPhone2_int_dial_code varchar
+  // CContactPhone2 nvarchar
+  // CContactPhone2_DateUpdate datetime
+  // CContactPhone2_StaffUpdate nvarchar
+  // CContactPhone3_int_dial_code varchar
+  // CContactPhone3 nvarchar
+  // CContactPhone3_DateUpdate datetime
+  // CContactPhone3_StaffUpdate nvarchar
+  LineID varchar
+  LineID_raw varchar
+  LineDisplayName varchar
+  LineDisplayImage varchar
+  CustomerType_ID int
+  LanguageCode varchar
+  NBID_CARD_ID nvarchar
+  NBID_MEMBERCARD_ID varchar
+  Customer_note text
+  // Note nvarchar
+  // No_Address char
+  // CAddrBuilding nvarchar
+  // CAddrNumber nvarchar
+  // CAddrMoo nvarchar
+  // CAddrSoi nvarchar
+  // CAddrRoad nvarchar
+  // CAddrTumbon nvarchar
+  // CAddrAmper nvarchar
+  // CAddrProvince varchar
+  // CAddrZip nvarchar
+  // CAddrCountry nvarchar
+  // CHomePhone_int_dial_code varchar
+  // CHomePhone nvarchar
+  // CFax nvarchar
+  // No_Address1 char
+  // CAddrBuilding1 nvarchar
+  // CAddrNumber1 nvarchar
+  // CAddrMoo1 nvarchar
+  // CAddrSoi1 nvarchar
+  // CAddrRoad1 nvarchar
+  // CAddrTumbon1 nvarchar
+  // CAddrAmper1 nvarchar
+  // CAddrProvince1 nvarchar
+  // CAddrZip1 nvarchar
+  // CAddrCountry1 nvarchar
+  // CHomePhone1_int_dial_code varchar
+  // CHomePhone1 nvarchar
+  // CFax1 nvarchar
+  // No_Address2 char
+  // CAddrBuilding2 nvarchar
+  // CAddrNumber2 nvarchar
+  // CAddrMoo2 nvarchar
+  // CAddrSoi2 nvarchar
+  // CAddrRoad2 nvarchar
+  // CAddrTumbon2 nvarchar
+  // CAddrAmper2 nvarchar
+  // CAddrProvince2 nvarchar
+  // CAddrZip2 nvarchar
+  // CAddrCountry2 nvarchar
+  // CHomePhone2_int_dial_code varchar
+  // CHomePhone2 nvarchar
+  // CFax2 nvarchar
+  // No_Address3 char
+  // CAddrBuilding3 nvarchar
+  // CAddrNumber3 nvarchar
+  // CAddrMoo3 nvarchar
+  // CAddrSoi3 nvarchar
+  // CAddrRoad3 nvarchar
+  // CAddrTumbon3 nvarchar
+  // CAddrAmper3 nvarchar
+  // CAddrProvince3 varchar
+  // CAddrZip3 nvarchar
+  // CAddrCountry3 nvarchar
+  // CAddrBuilding_THTXT nvarchar
+  // CAddrNumber_THTXT nvarchar
+  // CAddrMoo_THTXT nvarchar
+  // CAddrSoi_THTXT nvarchar
+  // CAddrRoad_THTXT nvarchar
+  // CAddrTumbon_THTXT nvarchar
+  // CAddrAmper_THTXT nvarchar
+  // CAddrProvince_THTXT nvarchar
+  // CAddrZip_THTXT nvarchar
+  // CAddrCountry_THTXT nvarchar
+  // Flag_Addr char
+  // Flag_Newsletter char
+  // Flag_Addr_DM_Allow char
+  // Flag_Addr_DM_Deliver char
+  // Flag_Email_Allow char
+  // Flag_Mobile_SMS1_Allow char
+  // Flag_Mobile_SMS2_Allow char
+  // Flag_Mobile_SMS3_Allow char
+  // PrintLabel char
+  // Check_Data char
+  // Latitude float
+  // Longitude float
+  // UpdateLatLong char
+  // Last_Login_Date datetime
+  // Google_Cookie nvarchar
+  // Create_Date datetime
+  // Create_By nvarchar
+  // Update_Date datetime
+  // Update_By varchar
+  // cx_docid_1 nvarchar
+  // cx_docid_2 nvarchar
+  // Unsubscribe char
+  // Unsubscribe_Mobile char
+  // Unsubscribe_Email char
+  // CAddrProvince_Note nvarchar
+  // CAddrAmper_Note nvarchar
+  // Company_Name nvarchar
+  // Sub_Occ_ID int
+  // Occupation_Remark nvarchar
+  // Income_ID int
+  // Fulcrum_Mobile char
+  // Fulcrum_Email char
+  // Silent_End_Date date
+  // Close_Grade int
+  // Old_CS_Prefix nvarchar
+  // Old_CS_Nation varchar
+  // Old_CS_Nationality nvarchar
+  // Old_CAddrAmper nvarchar
+  // Old_CAddrProvince varchar
+  // Old_CAddrCountry nvarchar
+  // Old_CAddrAmper1 nvarchar
+  // Old_CAddrProvince1 nvarchar
+  // Old_CAddrCountry1 nvarchar
+  // Old_CAddrAmper2 nvarchar
+  // Old_CAddrProvince2 nvarchar
+  // Old_CAddrCountry2 nvarchar
+  // Old_CAddrAmper3 nvarchar
+  // Old_CAddrProvince3 varchar
+  // Old_CAddrCountry3 nvarchar
+  // Old_CS_Prefix_EN nvarchar
+  // Flag_Juristic bit
+  // Nickname nvarchar
+  // Authorized_Person_TH nvarchar
+  // Authorized_Person_EN nvarchar
+  // Branch_Code varchar
+  // Branch_Name nvarchar
+  // CAddrTumbonName nvarchar
+  // CAddrAmperName nvarchar
+  // CAddrProvinceName nvarchar
+  // CAddrBuilding_EN nvarchar
+  // CAddrNumber_EN nvarchar
+  // CAddrMoo_EN nvarchar
+  // CAddrSoi_EN nvarchar
+  // CAddrRoad_EN nvarchar
+  // CAddrTumbon_EN nvarchar
+  // CAddrTumbonName_EN nvarchar
+  // CAddrAmper_EN nvarchar
+  // CAddrAmperName_EN nvarchar
+  // CAddrProvince_EN nvarchar
+  // CAddrProvinceName_EN nvarchar
+  // CAddrZip_EN nvarchar
+  // CAddrCountry_EN nvarchar
+  // Passport_Country_ID nvarchar
+  // CAddrTumbonName1 nvarchar
+  // CAddrAmperName1 nvarchar
+  // CAddrProvinceName1 nvarchar
+  // CAddrBuilding1_EN nvarchar
+  // CAddrNumber1_EN nvarchar
+  // CAddrMoo1_EN nvarchar
+  // CAddrSoi1_EN nvarchar
+  // CAddrRoad1_EN nvarchar
+  // CAddrTumbon1_EN nvarchar
+  // CAddrTumbonName1_EN nvarchar
+  // CAddrAmper1_EN nvarchar
+  // CAddrAmperName1_EN nvarchar
+  // CAddrProvince1_EN nvarchar
+  // CAddrProvinceName1_EN nvarchar
+  // CAddrZip1_EN nvarchar
+  // CAddrCountry1_EN nvarchar
+  // Company_Name_EN nvarchar
+  // CAddrTumbonName2 nvarchar
+  // CAddrAmperName2 nvarchar
+  // CAddrProvinceName2 nvarchar
+  // CAddrBuilding2_EN nvarchar
+  // CAddrNumber2_EN nvarchar
+  // CAddrMoo2_EN nvarchar
+  // CAddrSoi2_EN nvarchar
+  // CAddrRoad2_EN nvarchar
+  // CAddrTumbon2_EN nvarchar
+  // CAddrTumbonName2_EN nvarchar
+  // CAddrAmper2_EN nvarchar
+  // CAddrAmperName2_EN nvarchar
+  // CAddrProvince2_EN nvarchar
+  // CAddrProvinceName2_EN nvarchar
+  // CAddrZip2_EN nvarchar
+  // CAddrCountry2_EN nvarchar
+  // CAddrTumbonName3 nvarchar
+  // CAddrAmperName3 nvarchar
+  // CAddrProvinceName3 nvarchar
+  // CAddrBuilding3_EN nvarchar
+  // CAddrNumber3_EN nvarchar
+  // CAddrMoo3_EN nvarchar
+  // CAddrSoi3_EN nvarchar
+  // CAddrRoad3_EN nvarchar
+  // CAddrTumbon3_EN nvarchar
+  // CAddrTumbonName3_EN nvarchar
+  // CAddrAmper3_EN nvarchar
+  // CAddrAmperName3_EN nvarchar
+  // CAddrProvince3_EN nvarchar
+  // CAddrProvinceName3_EN nvarchar
+  // CAddrZip3_EN nvarchar
+  // CAddrCountry3_EN nvarchar
+  // CAddrCountryName nvarchar
+  // CAddrCountryName1 nvarchar
+  // CAddrCountryName2 nvarchar
+  // CAddrCountryName3 nvarchar
+  // CAddrCountryName_EN nvarchar
+  // CAddrCountryName1_EN nvarchar
+  // CAddrCountryName2_EN nvarchar
+  // CAddrCountryName3_EN nvarchar
+  // CS_PrefixName nvarchar
+  // CS_PrefixName_EN nvarchar
+  // CS_Nationality_EN nvarchar
+  // CAddrForiegn nvarchar
+  // CAddrForiegn_EN nvarchar
+  // CAddrForiegn1 nvarchar
+  // CAddrForiegn1_EN nvarchar
+  // CAddrForiegn2 nvarchar
+  // CAddrForiegn2_EN nvarchar
+  // CAddrForiegn3 nvarchar
+  // CAddrForiegn3_EN nvarchar
+  // Old_CAddrCountry_THTXT nvarchar
+  // Old_CAddrProvince_THTXT nvarchar
+  // Old_CAddrProvince_Note nvarchar
+  // Old_CAddrAmper_THTXT nvarchar
+  // Old_CAddrAmper_Note nvarchar
+  // CS_RaceName nvarchar
+  // CS_RaceName_EN nvarchar
+  // REM_Customer_ID nvarchar
+  // Old_CS_Race varchar
+  Emotional_Tone varchar
+  Spam_Type varchar
+}
+
+///////////////////////////////////////////////////////////////
+//  Database : Online_Member
+//////////////////////////////////////////////////////////////'
+
+Table Noble_ID_Member_dbo.NB_OnlineMember_Authen_Line {
+  OLA_Line_ID int
+  OLM_ID nchar
+  app_id int
+  LineID nvarchar
+  LinePIC nvarchar
+  LineName nvarchar
+  LineFirstLogin datetime
+  IsDefault bit
+  Status varchar
+  Create_DateTime datetime
+  Update_DateTime datetime
+}
+
+Table Noble_ID_Member_dbo.NB_OnlineMember {
+  OLM_ID int
+  Prefix_Code varchar
+  FirstName nvarchar
+  LastName nvarchar
+  BirthDay date
+  IdCardNo varchar
+  PassportNo varchar
+  Nationality_Code varchar
+  Int_dial_code1 varchar
+  ContactPhone1 nvarchar
+  Refer_ID int
+  Device varchar
+  Browser varchar
+  OS_PlatForm varchar
+  IPAddr varchar
+  Form_Lang varchar
+  CreateDateTime datetime
+  UpdateDateTime datetime
+  email nvarchar
+  password nvarchar
+  NobleID varchar
+  MCP_ID int
+  POSCustID int
+  StatusCode varchar
+  // CAddrBuilding1 nvarchar
+  // CAddrNumber1 nvarchar
+  // CAddrMoo1 nvarchar
+  // CAddrSoi1 nvarchar
+  // CAddrRoad1 nvarchar
+  // CAddrTumbon1 nvarchar
+  // CAddrAmper1 nvarchar
+  // CAddrProvince1 varchar
+  // CAddrCountry1 nvarchar
+  // CAddrZip1 nvarchar
+  // CAddrBuilding nvarchar
+  // CAddrNumber nvarchar
+  // CAddrMoo nvarchar
+  // CAddrSoi nvarchar
+  // CAddrRoad nvarchar
+  // CAddrTumbon nvarchar
+  // CAddrAmper varchar
+  // CAddrProvince varchar
+  // CAddrCountry varchar
+  // CAddrZip nvarchar
+  remember_token nvarchar
+  service_subscribe nvarchar
+  email_activated bit
+  mobile_activated bit
+  email_activate_datetime datetime
+  mobile_activate_datetime datetime
+  // user_type varchar
+  // first_app int
+  // Note nvarchar
+  // Int_dial_code11_new varchar
+  // ContactPhone11_new nvarchar
+  // Age int
+  // Deactivate_DateTime datetime
+  // Deactivate_Reason nvarchar
+  // Deactivate_By nvarchar
+  // Activate_Reason nvarchar
+  // Activate_By nvarchar
+  // Email_new nvarchar
+  // LeadID varchar
+  // FlagReadIDCard bit
+  // LineID nvarchar
+  // LinePIC nvarchar
+  // LineName nvarchar
+  // First_Agent_ID int
+  // Last_Agent_ID int
+  // First_UserID int
+  // Last_UserID int
+  // WorkPermit int
+  // ReferrerCode varchar
+  // Adsource varchar
+  // Taximail_Reason nvarchar
+  // MemberType int
+  // Flag_Merge bit
+  // FirstName_en nvarchar
+  // LastName_en nvarchar
+  // img_profile nvarchar
+  // upload_img_profile nvarchar
+  // CAddrAmperName varchar
+  // CaddrProvinceName varchar
+  // CAddrAmperName1 varchar
+  // CaddrProvinceName1 varchar
+  // RichMenuActivated int
+  Serve int
+}
+
+ref : Noble_ID_Member_dbo.NB_OnlineMember.OLM_ID>Noble_ID_Member_dbo.NB_OnlineMember_Authen_Line.OLM_ID
+
+Table Noble_ID_Member_dbo.NB_ID_ASSET {
+  NB_ID_ASSET_ID int pk
+  OLM_ID int
+  Customer_ID int
+  PJ_CODE varchar
+  PD_CODE varchar
+  PD_RUNNO varchar
+  PD_ADDR varchar
+  PD_AREA varchar
+  Permission varchar
+  Source varchar
+  Status varchar
+  Default_Unit bit
+  CreateBy varchar
+  UpdateBy varchar
+  UpdateDate datetime
+  email varchar
+  CreateDate datetime
+  Deferred int
+  Serve int
+  NB_Contract int
+  app_id int
+  contract_no varchar
+}
+
+ref : Noble_ID_Member_dbo.NB_OnlineMember.OLM_ID>Noble_ID_Member_dbo.NB_ID_ASSET.OLM_ID
+
+
+ref : NBFO2_POS.PP_Customer.OLM_ID-Noble_ID_Member_dbo.NB_OnlineMember.OLM_ID
+ref : CMM_public."Customer_System".Sys_Customer_ID-NBFO2_POS.PP_Customer.Customer_ID
+ref : CMM_public."Customer_System".Sys_Customer_ID-Noble_ID_Member_dbo.NB_OnlineMember.OLM_ID
+///////////////////////////////////////////////////////////////
+//note
+//////////////////////////////////////////////////////////////'
+
+// Table "Customer_Address" {
+//   "CAID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "AddrType" varchar(255)
+//   "AddrName" varchar(255)
+//   "AddrBuilding" varchar(255)
+//   "AddrNumber" varchar(255)
+//   "AddrMoo" varchar(255)
+//   "AddrSoi" varchar(255)
+//   "AddrRoad" varchar(255)
+//   "AddrTumbonID" int4
+//   "AddrAmperID" int4
+//   "AddrProvinceID" int4
+//   "AddrZipID" varchar(255)
+//   "AddrCountryID" int4
+//   "AddrName_EN" varchar(255)
+//   "AddrBuilding_EN" varchar(255)
+//   "AddrNumber_EN" varchar(255)
+//   "AddrMoo_EN" varchar(255)
+//   "AddrSoi_EN" varchar(255)
+//   "AddrRoad_EN" varchar(255)
+//   "AddrTumbon_TH" varchar(255)
+//   "AddrAmper_TH" varchar(255)
+//   "AddrProvince_TH" varchar(255)
+//   "AddrCountry_TH" varchar(255)
+//   "AddrTumbon_EN" varchar(255)
+//   "AddrAmper_EN" varchar(255)
+//   "AddrProvince_EN" varchar(255)
+//   "AddrCountry_EN" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CAID [unique, name: "Customer_Address_CAID_key"]
+//     CAID [pk, name: "Customer_Address_pkey"]
+//     NB_Customer_ID [type: btree, name: "customer_address_nb_customer_id_idx"]
+//   }
+// }
+
+// Table "Customer_Company" {
+//   "Customer_Company_ID" serial4 [not null]
+//   "Company_ID" int4
+//   "NB_Customer_ID" varchar(20)
+//   "Role" varchar(255)
+//   "Authorize_Flag" bool
+//   "Authorize_Priority" int4
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Customer_Company_ID [unique, name: "Customer_Company_Customer_Company_ID_key"]
+//     Customer_Company_ID [pk, name: "Customer_Company_pkey"]
+//   }
+// }
+
+// Table "Customer_CustomerDB" {
+//   "CDBID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CDBID [unique, name: "Customer_CustomerDB_CDBID_key"]
+//   }
+// }
+
+// Table "Customer_Detail" {
+//   "Customer_Detail_ID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "PD_CODE" varchar(255)
+//   "PD_RUNNO" int4
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Customer_Detail_ID [unique, name: "Customer_Detail_Customer_Detail_ID_key"]
+//     Customer_Detail_ID [pk, name: "Customer_Detail_pkey"]
+//   }
+// }
+
+// Table "Customer_Email" {
+//   "CEID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "Email" varchar(255)
+//   "Priority" int4
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CEID [unique, name: "Customer_Email_CEID_key"]
+//     CEID [pk, name: "Customer_Email_pkey"]
+//   }
+// }
+
+// Table "Customer_Key" {
+//   "CL_Key_ID" int4 [not null]
+//   "CL_Key" varchar(255)
+//   "CL_Desc" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CL_Key_ID [pk, name: "Customer_Key_pkey"]
+//   }
+// }
+
+// Table "Customer_Lifestyle" {
+//   "Customer_Lifestyle_ID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "CL_Key" varchar(255)
+//   "CL_Value" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Customer_Lifestyle_ID [unique, name: "Customer_Lifestyle_Customer_Lifestyle_ID_key"]
+//     Customer_Lifestyle_ID [pk, name: "Customer_Lifestyle_pkey"]
+//   }
+// }
+
+// Table "Customer_Phone" {
+//   "CPID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "Phone" varchar(50)
+//   "CountryCode" varchar(10)
+//   "DialCode" varchar(10)
+//   "PhoneExt" varchar(10)
+//   "Mobile_SMS_Allow" bool
+//   "Priority" int4
+//   "Flag_Verify" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CPID [unique, name: "Customer_Phone_CPID_key"]
+//     CPID [pk, name: "Customer_Phone_pkey"]
+//   }
+// }
+
+// Table "Customer_Project" {
+//   "CPJID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "PJ_CODE" varchar(255)
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CPJID [unique, name: "Customer_Project_CPJID_key"]
+//     CPJID [pk, name: "Customer_Project_pkey"]
+//   }
+// }
+
+// Table "Customer_Project_20240912" {
+//   "CPJID" int4
+//   "NB_Customer_ID" varchar(20)
+//   "PJ_CODE" varchar(255)
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+// }
+
+// Table "Customer_Project_NEW" {
+//   "CPJID" int4
+//   "NB_Customer_ID" varchar(20)
+//   "PJ_CODE" varchar(255)
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+//   "customerdb" varchar(8)
+//   "updatge_date" timestamp [not null]
+// }
+
+// Table "Customer_Relation" {
+//   "CRID" serial4 [not null]
+//   "Rel_Customer_ID" varchar(20)
+//   "NB_Customer_ID" varchar(20)
+//   "Relation_Type" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CRID [unique, name: "Customer_Relation_CRID_key"]
+//     CRID [pk, name: "Customer_Relation_pkey"]
+//   }
+// }
+
+// Table "Customer_Social" {
+//   "CSCID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "Name" varchar(255)
+//   "Provider" varchar(255)
+//   "Social_ID" varchar(255)
+//   "Social_Display_Name" varchar(255)
+//   "Social_Display_Image" text
+//   "Social_URL" varchar(255)
+//   "Priority" int4
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+//   "Flag_PP_Customer" bool
+//   "Flag_Migrate" int4
+
+//   Indexes {
+//     CSCID [unique, name: "Customer_Social_CSCID_key"]
+//     CSCID [pk, name: "Customer_Social_pkey"]
+//   }
+// }
+
+
+
+// Table "Customer_Unit" {
+//   "Customer_Unit_ID" serial4 [not null]
+//   "NB_Customer_ID" varchar(20)
+//   "PD_CODE" varchar(255)
+//   "PD_RUNNO" int4
+//   "CT" varchar(255)
+//   "Segment" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Customer_Unit_ID [unique, name: "Customer_Unit_Customer_Unit_ID_key"]
+//     Customer_Unit_ID [pk, name: "Customer_Unit_pkey"]
+//   }
+// }
+
+// Table "Event_Generate_QR_Checkin_Task" {
+//   "Event_ID" serial4 [not null]
+//   "Customer_ID" int4 [not null]
+//   "Promotion_ID" int4 [not null]
+//   "PJ_CODE" int4 [not null]
+//   "Create_Date" timestamp [not null]
+//   "Create_By" varchar(255) [not null]
+//   "Update_Date" timestamp [not null]
+//   "Update_By" varchar(255) [not null]
+
+//   Indexes {
+//     Event_ID [unique, name: "Event_Generate_QR_Checkin_Task_Event_ID_key"]
+//   }
+// }
+
+// Table "PP_Company" {
+//   "Company_ID" serial4 [not null]
+//   "Address_ID" int4
+//   "Industry_ID" int4
+//   "Name" varchar(255)
+//   "Type" varchar(255)
+//   "Tax_ID" varchar(255)
+//   "Tax_Address" varchar(255)
+//   "Contact_Address" varchar(255)
+//   "Commercial_ID" varchar(255)
+//   "Commercial_Type" varchar(255)
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Company_ID [unique, name: "PP_Company_Company_ID_key"]
+//     Company_ID [pk, name: "PP_Company_pkey"]
+//   }
+// }
+
+// Table "PP_Company_Industry" {
+//   "Industry_ID" serial4 [not null]
+//   "Name" varchar(255)
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Industry_ID [unique, name: "PP_Company_Industry_Industry_ID_key"]
+//     Industry_ID [pk, name: "PP_Company_Industry_pkey"]
+//   }
+// }
+
+// Table "SY_Country" {
+//   "Country_ID" serial4 [not null]
+//   "CY_CODE" varchar(10)
+//   "CY_NAME" varchar(255)
+//   "CY_ENAME" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Country_ID [unique, name: "SY_Country_Country_ID_key"]
+//     Country_ID [pk, name: "SY_Country_pkey"]
+//   }
+// }
+
+// Table "SY_Customer_Type" {
+//   "CustomerType_ID" serial4 [not null]
+//   "CustomerType_Name" varchar(255)
+//   "CustomerType_Color" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     CustomerType_ID [unique, name: "SY_Customer_Type_CustomerType_ID_key"]
+//     CustomerType_ID [pk, name: "SY_Customer_Type_pkey"]
+//   }
+// }
+
+// Table "SY_District" {
+//   "District_ID" serial4 [not null]
+//   "PV_CODE" varchar(255)
+//   "DT_CODE" varchar(255)
+//   "DT_TNAME" varchar(255)
+//   "DT_ENAME" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     District_ID [unique, name: "SY_District_District_ID_key"]
+//     District_ID [pk, name: "SY_District_pkey"]
+//   }
+// }
+
+// Table "SY_Income" {
+//   "Income_ID" serial4 [not null]
+//   "Income" varchar(255)
+//   "Income_EN" varchar(255)
+//   "Flag_Active" bool
+//   "Sort_No" int4
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Income_ID [unique, name: "SY_Income_Income_ID_key"]
+//     Income_ID [pk, name: "SY_Income_pkey"]
+//   }
+// }
+
+// Table "SY_Language" {
+//   "LG_ID" serial4 [not null]
+//   "LG_CODE" varchar(5)
+//   "LG_TNAME" varchar(60)
+//   "LG_ENAME" varchar(60)
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     LG_ID [unique, name: "SY_Language_LG_ID_key"]
+//     LG_ID [pk, name: "SY_Language_pkey"]
+//   }
+// }
+
+// Table "SY_Marriage_Status" {
+//   "MS_ID" serial4 [not null]
+//   "MS_CODE" varchar(5)
+//   "MS_TNAME" varchar(60)
+//   "MS_ENAME" varchar(60)
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     MS_ID [unique, name: "SY_Marriage_Status_MS_ID_key"]
+//     MS_ID [pk, name: "SY_Marriage_Status_pkey"]
+//   }
+// }
+
+// Table "SY_Nationality" {
+//   "Nation_ID" serial4 [not null]
+//   "NT_CODE" varchar(255)
+//   "NT_NAME" varchar(255)
+//   "NT_ENAME" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Nation_ID [unique, name: "SY_Nationality_Nation_ID_key"]
+//     Nation_ID [pk, name: "SY_Nationality_pkey"]
+//   }
+// }
+
+// Table "SY_Occupation" {
+//   "Occupation_ID" serial4 [not null]
+//   "Occupation_Name_TH" varchar(255)
+//   "Occupation_Name_EN" varchar(255)
+//   "Specify_Detail" bool
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Occupation_ID [unique, name: "SY_Occupation_Occupation_ID_key"]
+//     Occupation_ID [pk, name: "SY_Occupation_pkey"]
+//   }
+// }
+
+// Table "SY_Occupation_Relate" {
+//   "OCRID" serial4 [not null]
+//   "Occupation_ID" int4
+//   "Sub_Occ_ID" int4
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     OCRID [unique, name: "SY_Occupation_Relate_OCRID_key"]
+//     OCRID [pk, name: "SY_Occupation_Relate_pkey"]
+//   }
+// }
+
+// Table "SY_Prefix" {
+//   "Prefix_ID" serial4 [not null]
+//   "PN_CODE" varchar(255)
+//   "PN_NAME" varchar(255)
+//   "PN_ENAME" varchar(255)
+//   "PN_TYPE" varchar(255)
+//   "PN_LANG" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Prefix_ID [unique, name: "SY_Prefix_Prefix_ID_key"]
+//     Prefix_ID [pk, name: "SY_Prefix_pkey"]
+//   }
+// }
+
+// Table "SY_Project" {
+//   "PJ_ID" serial4 [not null]
+//   "PJ_CODE" varchar(5)
+//   "PJ_TNAME" varchar(60)
+//   "PJ_ENAME" varchar(60)
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     PJ_ID [unique, name: "SY_Project_PJ_ID_key"]
+//     PJ_ID [pk, name: "SY_Project_pkey"]
+//   }
+// }
+
+// Table "SY_Province" {
+//   "Province_ID" serial4 [not null]
+//   "CY_CODE" varchar(255)
+//   "PV_CODE" varchar(255)
+//   "PV_TNAME" varchar(255)
+//   "PV_ENAME" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Province_ID [unique, name: "SY_Province_Province_ID_key"]
+//     Province_ID [pk, name: "SY_Province_pkey"]
+//   }
+// }
+
+// Table "SY_Race" {
+//   "RA_ID" serial4 [not null]
+//   "RA_CODE" varchar(255)
+//   "RA_NAME" varchar(255)
+//   "RA_ENAME" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     RA_ID [unique, name: "SY_Race_RA_ID_key"]
+//     RA_ID [pk, name: "SY_Race_pkey"]
+//   }
+// }
+
+// Table "SY_Sub_District" {
+//   "Sub_District_ID" serial4 [not null]
+//   "PV_CODE" varchar(255)
+//   "DT_CODE" varchar(255)
+//   "SDT_CODE" varchar(255)
+//   "SDT_TNAME" varchar(255)
+//   "SDT_ENAME" varchar(255)
+//   "ZIP_CODE" varchar(255)
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Sub_District_ID [unique, name: "SY_Sub_District_Sub_District_ID_key"]
+//     Sub_District_ID [pk, name: "SY_Sub_District_pkey"]
+//   }
+// }
+
+// Table "SY_Sub_Occupation" {
+//   "Sub_Occ_ID" serial4 [not null]
+//   "Sub_Occ_Name_TH" varchar(255)
+//   "Sub_Occ_Name_EN" varchar(255)
+//   "Specify_Detail" bool
+//   "Status" bool
+//   "Create_Date" timestamp(6)
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp(6)
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Sub_Occ_ID [unique, name: "SY_Sub_Occupation_Sub_Occ_ID_key"]
+//     Sub_Occ_ID [pk, name: "SY_Sub_Occupation_pkey"]
+//   }
+// }
+
+
+
+// Table "Yeastar_Token" {
+//   "Yeastar_ID" serial4 [not null]
+//   "Access_Token" varchar(255)
+//   "Access_Token_Expire_Time" int4
+//   "Refresh_Token" varchar(255)
+//   "Refresh_Token_Expire_Time" int4
+//   "Create_Date" timestamp
+//   "Create_By" varchar(255)
+//   "Update_Date" timestamp
+//   "Update_By" varchar(255)
+//   "WH_Update_Date" int4
+
+//   Indexes {
+//     Yeastar_ID [pk, name: "Yeastar_Token_pkey"]
+//   }
+// }

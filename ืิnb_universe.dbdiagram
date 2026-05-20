@@ -1,0 +1,190 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": true,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "tablePositions": [
+      {
+        "name": "NB_OnlineMember",
+        "schemaName": "dbo",
+        "x": 0,
+        "y": 50
+      },
+      {
+        "name": "NB_OnlineMember_Authen_Line",
+        "schemaName": "dbo",
+        "x": 749.7857183558053,
+        "y": 46.611429002140284
+      },
+      {
+        "name": "Customer",
+        "schemaName": "CMM_public",
+        "x": 0,
+        "y": 50
+      },
+      {
+        "name": "Customer_System",
+        "schemaName": "CMM_public",
+        "x": 479.53759765625,
+        "y": 50
+      },
+      {
+        "name": "SY_System",
+        "schemaName": "CMM_public",
+        "x": 872.9248046875,
+        "y": 50
+      },
+      {
+        "name": "PP_Customer",
+        "schemaName": "NBFO2_POS",
+        "x": 1226.11865234375,
+        "y": 50
+      },
+      {
+        "name": "NB_OnlineMember_Authen_Line",
+        "schemaName": "Noble_ID_Member_dbo",
+        "x": 0,
+        "y": 1572
+      },
+      {
+        "name": "NB_OnlineMember",
+        "schemaName": "Noble_ID_Member_dbo",
+        "x": 479.53759765625,
+        "y": 452
+      },
+      {
+        "name": "NB_ID_ASSET",
+        "schemaName": "Noble_ID_Member_dbo",
+        "x": 872.9248046875,
+        "y": 388
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "OLM_ID"
+        ],
+        "firstTableName": "NB_OnlineMember",
+        "firstSchemaName": "dbo",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "OLM_ID"
+        ],
+        "secondTableName": "NB_OnlineMember_Authen_Line",
+        "secondSchemaName": "dbo",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "NB_Customer_ID"
+        ],
+        "firstTableName": "Customer",
+        "firstSchemaName": "CMM_public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "NB_Customer_ID"
+        ],
+        "secondTableName": "Customer_System",
+        "secondSchemaName": "CMM_public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "System_ID"
+        ],
+        "firstTableName": "SY_System",
+        "firstSchemaName": "CMM_public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "System_ID"
+        ],
+        "secondTableName": "Customer_System",
+        "secondSchemaName": "CMM_public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "OLM_ID"
+        ],
+        "firstTableName": "NB_OnlineMember",
+        "firstSchemaName": "Noble_ID_Member_dbo",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "OLM_ID"
+        ],
+        "secondTableName": "NB_OnlineMember_Authen_Line",
+        "secondSchemaName": "Noble_ID_Member_dbo",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "OLM_ID"
+        ],
+        "firstTableName": "NB_OnlineMember",
+        "firstSchemaName": "Noble_ID_Member_dbo",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "OLM_ID"
+        ],
+        "secondTableName": "NB_ID_ASSET",
+        "secondSchemaName": "Noble_ID_Member_dbo",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "OLM_ID"
+        ],
+        "firstTableName": "PP_Customer",
+        "firstSchemaName": "NBFO2_POS",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "OLM_ID"
+        ],
+        "secondTableName": "NB_OnlineMember",
+        "secondSchemaName": "Noble_ID_Member_dbo",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "Sys_Customer_ID"
+        ],
+        "firstTableName": "Customer_System",
+        "firstSchemaName": "CMM_public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "Customer_ID"
+        ],
+        "secondTableName": "PP_Customer",
+        "secondSchemaName": "NBFO2_POS",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "Sys_Customer_ID"
+        ],
+        "firstTableName": "Customer_System",
+        "firstSchemaName": "CMM_public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "OLM_ID"
+        ],
+        "secondTableName": "NB_OnlineMember",
+        "secondSchemaName": "Noble_ID_Member_dbo",
+        "secondRelation": "1",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}

@@ -35,6 +35,9 @@ begin
 	                               เพิ่มส่วนของการลบ ไม่ให้เกิน  3 version ป้องกันข้อมูลบวม
     2026.05.13 ep4  v03 - เปลี่ยน segment 13 เป็น 19 (11->13(prostpect, 12->18(lead), 13->19(guest), 9->10(family) ,9->11(main tenane), 10->9 Authorize))
                         - เพิ่มเงื่อนไข app_id = 1 ในการหาข้อมูล Asset (เฉพาะของ noble_id)
+    2026.05.20 ep4  v04 = การเพิ่ม app_id ไม่พอ ต้องเพิ่ม serve ด้วย
+                          app_id = 1 + serve = 0   = รายการของ  noble_id เท่านั้น
+                          app_id = 2 + serve = 1   = รายการของ  serve เท่านั้น
 
 */
 
@@ -144,6 +147,7 @@ IF (OBJECT_ID (N'tempdb..#temp_owner_nbid') IS NOT NULL) DROP TABLE #temp_owner_
         --join ต้อง where rec_rank = 1 ด้วย
         and asset.status = 'Active'
         and asset.app_id = 1          --2026.05.13 app_id = 1(noble_id)
+        and asset.serve = 0           --2026.05.20 ref v04  
     ;
 
 --  select *   from #temp_owner_nbid;    -- ok 
@@ -606,6 +610,7 @@ IF (OBJECT_ID (N'tempdb..#temp_nbid_segment_09') IS NOT NULL) DROP TABLE #temp_n
         and asset.status = 'Active'
         and upper(asset.permission) in ('T','A','F')  -- tenant, authorized person, family
         and asset.app_id = 1                          --2026.05.13 app_id = 1(noble_id)
+        and asset.serve  = 0                          --2026.05.20 ref v04
       --0  and asset.status = 'Active'
 ;
 
